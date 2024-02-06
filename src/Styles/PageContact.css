@@ -1,0 +1,91 @@
+.page-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 5%;
+    
+    
+  }
+  
+  .container-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; 
+       
+  }
+  
+  .wrapper-contact {
+    width: 45%;
+    margin: 0 auto; 
+  
+    
+    }
+  
+.wrapper-contact form {
+   margin-left: -300px;
+}
+   
+  
+  
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .input-inbox-contact {
+    
+    margin-bottom: 2px;
+  }
+  
+  .input-inbox-contact input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-bottom: 50px;
+  }
+  
+  .input-inbox-contact-message input {
+    height: 100px; /* Hauteur spécifique pour l'input de message */
+    resize: vertical;
+    width: 500px;
+    border-radius: 10px;  
+    
+    /* Permet à l'utilisateur de redimensionner la hauteur verticalement */
+  }
+  
+  .btn {
+    background-color: #d9c2b1;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 50px;
+   
+  }
+  
+  .btn:hover {
+    background-color: #c6b09f;
+  }
+
+  @media screen and (max-width: 768px) {
+    .wrapper-contact {
+      width: 10%; /* Utilisez une largeur encore plus grande pour les petits écrans */
+    }
+   
+
+    .input-inbox-contact input {
+      padding: 5px; /* Réduire encore plus le padding pour les petits écrans */
+      padding-bottom: 30px;
+      width: 50%;
+       /* Réduire encore plus le padding pour les petits écrans */
+    }
+
+    .input-inbox-contact-message input {
+      height: 20px;
+      width: 50%; /* Réduire encore plus la hauteur de l'input de message pour les petits écrans */
+    }
+  }

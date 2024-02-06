@@ -1,0 +1,83 @@
+body {
+    height: 100%;
+}
+
+.imagesrang1 {
+    display: flex;
+    flex-direction: row;  /* Les images sont disposées en colonnes */
+    align-items: center;   
+    
+    justify-content: center;  /* Centrer horizontalement */
+    gap: 10%;
+    margin-top: 5%
+}
+
+.image-row {
+    display: flex;
+    gap: 10%;
+   margin-left: 8%;
+   padding: 0px 0px 15px;
+    
+}
+
+.image-container {
+    position: relative;
+    text-align: center; 
+    /* Centrer le texte horizontalement */
+}
+
+.image-container img {
+    width: 15vw;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    margin-top: 8%;
+    height: 30vh;
+}
+
+
+.text-overlay {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    color: rgb(253, 253, 253);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+}
+
+.image-container:hover .text-overlay {
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .imagesrang1 {
+      flex-direction: column; /* Changez la direction en colonne pour que les images soient disposées en ligne */
+      align-items: center; /* Centrez les images horizontalement */
+      margin-top: 3%; /* Réduisez la marge supérieure */
+    }
+  
+    .image-row {
+      margin-left: 0;
+      flex-direction: column; /* Réinitialisez la marge gauche */
+    }
+  
+    .image-container img {
+      width: 20vw; /* Réduisez la largeur des images */
+      height: auto; /* Ajustez automatiquement la hauteur en fonction de la largeur */
+    }
+  
+    .text-overlay {
+      font-size: 10px; /* Réduisez la taille du texte */
+    }
+  }
+  
+

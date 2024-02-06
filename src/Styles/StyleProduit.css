@@ -1,0 +1,116 @@
+.imgproduit img {
+                
+       width: 8vw;
+               
+      }
+
+.imgproduit-container {
+    display: flex;
+    flex-wrap: wrap;
+    background: linear-gradient(to bottom, rgba(227, 214, 204, 0.8), rgba(255, 255, 255, 0.5));
+    margin-top: 5%;
+    justify-content: center;  
+}
+
+.imgproduit {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  
+   align-items: center;
+}
+
+
+     
+.description {
+        font-size: 20px;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        
+      }
+
+.produit-card {
+        width: 35vw;
+        margin: 10px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+        background: linear-gradient(to bottom, rgba(227, 214, 204, 0.8), rgba(255, 255, 255, 0.5));
+        overflow: hidden; /* Masque le contenu débordant de la carte */
+        position: relative; 
+        align-items: center;
+        border: none;
+        border-radius: 10%;
+         
+    }
+    
+    .images-container {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .produit-card img {
+        max-width: 100%;
+        height: auto;
+        margin-right: 10px;
+        border-radius: 50%;
+       
+        
+    }
+    .produit-card img {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .produit-card img:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        /* transform: translateY(20px);  */
+    }
+    
+   
+    
+    
+    /* Ajoutez des flèches pour indiquer le défilement */
+    .left-arrow,
+    .right-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 20px;
+        color: #333;
+    }
+    
+    .left-arrow {
+        left: 10px;
+    }
+    
+    .right-arrow {
+        right: 10px;
+    }
+
+.link a {
+        text-decoration: none; /* Supprime le soulignement du lien */
+        color: #0c0c0c; /* Couleur du lien, ajustez selon vos besoins */
+        font-weight: bold; /* Ajoute de la mise en évidence au lien, ajustez selon vos besoins */
+        display: inline-block; /* Pour permettre la gestion de la largeur et de la hauteur */
+        padding: 10px 15px; /* Ajoutez un espacement autour du texte du lien */
+        background-color: #d9c2b1; /* Couleur de fond du lien, ajustez selon vos besoins */
+        border-radius: 5px;
+         /* Ajoute des coins arrondis au lien */
+      }
+      
+.link a:hover {
+        background-color: #c6b09f; /* Couleur de fond du lien au survol, ajustez selon vos besoins */
+        color: #ffffff; /* Couleur du texte du lien au survol, ajustez selon vos besoins */
+      }
+
+.boutonpanier {
+    background-color: #d9c2b1;
+}
+
+.boutonpanier:hover {
+    background-color: #c6b09f;
+}
+      
+
+      

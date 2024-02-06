@@ -1,0 +1,113 @@
+.panier {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px; /* Ajoutez du rembourrage pour espacer les éléments */
+  border: 1px solid #ccc; /* Ajoutez une bordure pour mieux délimiter la carte */
+  border-radius: 5px; /* Ajoutez des coins arrondis pour une apparence plus esthétique */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  width: 500px;
+  background-color: #c4ad9c;
+  
+}
+.monpanier {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer horizontalement les éléments */
+  justify-content: center; /* Centrer verticalement les éléments */
+  min-height: 100vh;
+  margin-top: 50px;
+  
+}
+
+
+  .monpanier h1 {
+  margin-top: 50px;
+  margin-bottom: 50px; /* Ajustez la valeur de la marge supérieure selon vos besoins */
+}
+
+  .panier {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+   
+  }
+  
+  .paniernom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espacement entre les éléments */
+    align-items: center; 
+    margin-bottom: 20px; 
+  }
+  .panier img {
+    width: 200px; /* Ajustez la taille de l'image selon vos besoins */
+    margin-right: 10px;
+  }
+  
+  .panier span {
+    margin-right: 10px;
+ 
+   
+  }
+
+  .augmenter, .supprimer {
+    background-color: dimgray;
+  }
+   .augmenter:hover {
+    background-color: darkgray;
+   }
+
+.supprimer:hover {
+    background-color: rgb(190, 114, 114);
+}
+
+.continuer {
+  background-color: #ad9481;
+}
+.continuer:hover {
+  background-color:#c4ad9c ;
+}
+ .caisse {
+  background-color: #c5906b;
+ }
+
+ .caisse:hover {
+  background-color: #cea383;
+ }
+
+ @media only screen and (max-width: 768px) {
+  /* Appliquez les styles appropriés pour les petits écrans */
+  .monpanier h1 {
+    margin-top: -2em;
+    margin-bottom: 10px;
+    font-size: 10px; /* Ajustez la valeur de la marge supérieure selon vos besoins */
+  }
+  .panier {
+    width:250px;
+    margin-left: -20px; /* Ajustez la largeur des éléments pour remplir la largeur de l'écran */
+  }
+  .panier img {
+    width: 50px;
+  }
+  
+  .paniernom span {
+    font-size: 10px; /* Réduisez la taille de la police pour les éléments de texte */
+  }
+
+button {
+    font-size: 10px; 
+    width: 30%;
+    height: 10px;
+    justify-content: center;
+    align-items: center;/* Réduisez la taille de la police pour les boutons */
+  }
+
+.continuer {
+  font-size: 6px; 
+    width: 50%;
+    height: 50%;
+}
+}
+
+  

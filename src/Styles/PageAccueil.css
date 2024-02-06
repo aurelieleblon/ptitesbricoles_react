@@ -1,0 +1,64 @@
+   
+  body {
+    background: linear-gradient(to bottom, #e7d1c0, #EFEBEB) no-repeat;
+     height: auto;
+  }
+
+
+.slider {
+  width: 50%; /* Ajustez la largeur du slider selon vos besoins */
+  margin: auto; /* Pour centrer horizontalement */
+  margin-top: 150px; /* Marge en haut, ajustez selon vos préférences */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.container-sliderimage {
+  width: 100%;
+  height: 200px;
+}
+
+img {
+  height: 100%; /* Ajustez la hauteur de l'image selon vos besoins */
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20%; /* Pour maintenir les proportions de l'image */
+}
+
+.content {
+  text-align: center;
+  position: relative;
+  top: 60%; /* Ajustez la valeur selon vos préférences pour déplacer le contenu vers le bas */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+}
+
+.content p {
+  position: relative;
+  font-weight: 600;
+  font-size: 20px;
+ line-height: 2;
+ margin-top: 30vh; /*Ajoutez une marge en haut du paragraphe pour le descendre davantage */
+}
+
+@media screen and (max-width: 768px) {
+  .slider {
+      width: 80%; /* Réduisez encore la largeur du slider pour une meilleure adaptation */
+      margin-top: 50px; /* Ajustez la marge en haut pour les écrans plus petits */
+  }
+
+  .content p {
+      font-size: 12px;
+      margin-top: 20vh; /* Réduisez davantage la taille de la police pour les écrans plus petits */
+  }
+
+
+
+  img {
+    height: 50%; /* Ajustez la hauteur de l'image selon vos besoins */
+    object-fit: cover; 
+    border-radius: 20%; /*Pour maintenir les proportions de l'image */
+}
+}
