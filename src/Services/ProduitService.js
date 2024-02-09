@@ -6,7 +6,18 @@ function GetProduitById(id) {
 
 };
 
-export default {
+function GetProduitByIdBis(id) {
+  return axios.get('http://127.0.0.1:8080/produit/produit/'+id);
 
-  GetProduitById
+};
+
+function GetProduit() {
+  return axios.get('http://127.0.0.1:8080/produit/');
+
+};
+
+export default {
+  GetProduit,
+  GetProduitById,
+  GetProduitByIdBis
 };

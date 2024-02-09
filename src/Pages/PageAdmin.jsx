@@ -1,123 +1,161 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Styles/PageAdmin.css'
-import PageAdminService from '../Services/PageAdminService';
+import ProduitService from '../Services/ProduitService';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import PageAdminService from '../Services/PageAdminService';
 
 const AdminPage = () => {
-   
-  const [produit, setProduit] = useState({
-    nom : "",
-    description : "",
-    prix : "",
-  });
-  const [modificationProduit, setModificationProduit] = useState({
-    idmodif: "",
-    nommodif: "",
-    descriptionmodif: "",
-    prixmodif: ""
-  });
-  
+const [produits, setProduits] = useState([])
+const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false); // État de connexion admin
 
-  const handleChange = (event) => {
-    const {name, value} = event.currentTarget;
-    setProduit({...produit, [name] : value})
+const checkAdminLogin = () => {
+  // Récupère le jeton JWT du stockage local
+  const token = localStorage.getItem('Token');
+
+  // Vérifie si le jeton existe
+  if (token) {
+ 
+    // Met à jour l'état isAdminLoggedIn en indiquant que l'admin est connecté
+    setIsAdminLoggedIn(true);
+  } else {
+    // Aucun jeton trouvé, l'admin n'est pas connecté
+    setIsAdminLoggedIn(false);
   }
-
-  const handleChangeModification = (event) => {
-    const { name, value } = event.currentTarget;
-    setModificationProduit({ ...modificationProduit, [name]: value });
-  };
-  
-
-
-  const handleAdd = () => {
-    try {
-        const response = PageAdminService.ajoutProduit(produit);
-        toast.success("Le produit a bien été ajouté");
-       }catch (e){
-        console.log(e)
-       }
-       console.log(produit) 
-       
-  }
-  const handleDelete = () => {
-    try {
-        const response = PageAdminService.suppressionProduit(produit.id);
-        toast.success("Le produit a bien été supprimé");
-        
-    } catch (e) {
-        console.error(e);
-    }
 }
 
-const handleUpdate = async () => {
+  const GetProduit = async () => {
+    try {
+        const response = await ProduitService.GetProduit();
+        
+        setProduits(response.data.data)
+          
+    } catch (e) {
+        console.log(e)
+    }
+}
+console.log(produits.PR_ID);
+
+const [newProduit, setNewProduit] = useState({
+  PR_Nom: '',
+  PR_Description: '',
+  PR_Prix: ''
+})
+
+const handleNewChange = (event) => {
+  const { name, value } = event.currentTarget;
+  setNewProduit({ ...newProduit, [name]: value });
+  
+};
+
+const handleAdd = (e) => {
+  e.preventDefault();
   try {
-      const response = await PageAdminService.modificationProduit(modificationProduit);
-      toast.success("Le produit a bien été modifié");
+      const response = PageAdminService.ajoutProduit(newProduit);
+      toast.success("Le produit a bien été ajouté");
+     }catch (e){
+      console.log(e)
+     }
+     console.log(newProduit) 
      
+} 
+const deleteProduit = (id) => {
+  try {
+      const response = PageAdminService.suppressionProduit(id);
+      setTimeout(() => {
+        window.location.reload();
+    }, 2000);
+      toast.success("Le produit a bien été supprimé");
+      
   } catch (e) {
       console.error(e);
   }
 }
-const handleLogout = () => {
-  localStorage.removeItem('token');
-
-  // Afficher le toast de déconnexion réussie
-  toast.success("Déconnexion réussie");
-
-  // Rediriger l'utilisateur vers la page de connexion après un court délai
-  setTimeout(() => {
-    window.location.href = '/ConnAdmin';
-  }, 1000); // Redirection après 1 seconde (1000 millisecondes)
-}
-
-
-  return <>
-    <div>
-      <h2>Tableau d'Administration des Produits</h2>
-
+useEffect(() => {
+  GetProduit() 
+}, []) // dépendance vide pour que ça ait lieu que une seule fois et que ça ne dépende de rien. SIl y a qq chose dedans (ex user) ca change en fonction de user
+ 
+console.log(produits)
+return (
+  <>
+  {/* {isAdminLoggedIn && ( */}
+  <form className='ajout' onSubmit={handleAdd}>
       
+      <div>
+        <h1> Ajout de produits </h1>
+        <label htmlFor="newProduit">Nom du nouveau produit:</label>
+        <input
+          type="text"
+          id="newProduit"
+          name='PR_Nom'
+          value={newProduit.PR_Nom}
+          onChange={handleNewChange}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="newDescription">Description du nouveau produit:</label>
+        <textarea
+          id="newDescription"
+          name='PR_Description'
+          value={newProduit.PR_Description}
+          onChange={handleNewChange}
+          required
+        />
+      </div>
       
-<div className='admin'>
-        <label className='label'>Nom du Produit:</label>
-        <input type="text" value={produit.nom} name={"nom"} onChange={handleChange}/>
-        <label className='label'>Description:</label>
-        <input type="text" value={produit.description} name={"description"} onChange={handleChange} />
-        <label className='label'>Prix:</label>
-        <input type="text" value={produit.prix} name={"prix"} onChange={handleChange}/>
-        
-        <button className='boutonajout' onClick={handleAdd}>Ajouter Produit</button>
-</div>
+      <div>
+        <label htmlFor="newPrice">Prix du nouveau produit:</label>
+        <input
+          type="number"
+          id="newPrice"
+          name='PR_Prix'
+          value={newProduit.PR_Prix}
+          onChange={handleNewChange}
+          required
+        />
+      </div>
+      <button className='bouton-ajouter' type="submit">Ajouter</button>
+    </form>
+  {/* )} */}
     
+ 
+ 
+  <table>
+        <thead>
+            <tr>
+            <th className='colonne-img'>Image</th>
+            <th className='colonne-produit'>Nom du produit <img class="ASC-icon" src={""} width={10} alt="" /></th>
+            <th  className='colonne-prixQ'>Prix</th>
+           
+            <th className='colonne-modSupp'>Modifier</th>
+            <th className='colonne-modSupp'>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {produits.map ((prod) => (
+            <tr>
+            <td><img src={process.env.PUBLIC_URL + `/Assets/images/` + prod.PR_Image1}   height={50} alt="Produit" className='img-produit'/></td>
+            <td>{prod.PR_Nom}</td>
+            <td>{prod.PR_Prix}€</td>
+            <td>
+              <Link to={`/modifAdmin/${prod.PR_ID}`}>
+                <button className='bouton-modifier'>Modifier</button>
+              </Link>
+            </td>
 
-<div className='admin'>
-  <label className='label'>ID du produit:</label>
-  <input type="text" value={produit.id} name={"id"} onChange={handleChange}/>
+            <td><button className='bouton-supprimer' onClick={() => deleteProduit(prod.PR_ID)}>Supprimer</button>
+</td>
+            </tr>
+        ))}
+        </tbody>
+    </table>
   
+  
+  </>
+)
 
-  <button className='boutonsupp' onClick={handleDelete}>Supprimer Produit</button>
-</div> 
-
-<div className='admin'>
-        <label className='label'>ID du Produit:</label>
-        <input type="number" value={modificationProduit.idmodif} name={"idmodif"} onChange={handleChangeModification}/>
-        <label className='label'>Nom modifié:</label>
-        <input type="text" value={modificationProduit.nommodif} name={"nommodif"} onChange={handleChangeModification} />
-        <label className='label'>Description modifiée:</label>
-        <input type="text" value={modificationProduit.descriptionmodif} name={"descriptionmodif"} onChange={handleChangeModification} />
-        <label className='label'>Prix modifié:</label>
-        <input type="number" value={modificationProduit.prixmodif} name={"prixmodif"} onChange={handleChangeModification}/>
-        
-        <button className='boutonmodif' onClick={handleUpdate}>Modifier Produit</button>
-
-</div>
-
-<button className='boutondeconn' onClick={handleLogout}>  Se déconnecter </button>
-
-</div>
- </>;
 }
-          
-     
 
 export default AdminPage;
+

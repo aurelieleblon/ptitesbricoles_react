@@ -67,7 +67,7 @@ const Inscription = () => {
                 <div className='container-inscri'>
                    
                      <div className="wrapper-inscri">
-                        <p> En vous inscrivant, vous recevrez nos nouveautés et des offres promotionnelles.</p>
+                        <p> En vous inscrivant, vous pourrez acheter des articles et avoir accès à votre panier.</p>
                         <form>
                             <h2>Inscription</h2>
                             

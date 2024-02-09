@@ -7,22 +7,32 @@ function addUtilisateur(utilisateur){
     }
 })
 }
-
-function fetchConnexion(connexions){
-    return axios.post("http://127.0.0.1:8080/connexion", connexions, {
+function loginUtilisateur(utilisateur) {
+    return axios.post("http://127.0.0.1:8080/connexion", utilisateur, {
         headers : {
             'Content-Type' : 'application/json'
         }
-
     })
+    
+
 }
 
-function ConnAdmin(admin) {
-    return axios.get("http://127.0.0.1.8080/admin", admin)
-}
+// function fetchConnexion(connexions){
+//     return axios.post("http://127.0.0.1:8080/connexion", connexions, {
+//         headers : {
+//             'Content-Type' : 'application/json'
+//         }
+
+//     })
+// }
+
+// function ConnAdmin(admin) {
+//     return axios.get("http://127.0.0.1.8080/admin", admin)
+// }
 
 export default {
     addUtilisateur,
-    fetchConnexion,
-    ConnAdmin
+    // fetchConnexion,
+    loginUtilisateur
+    // ConnAdmin
 }

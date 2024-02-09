@@ -1,12 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../Styles/PagePanier.css"
+import PageCommandeService from '../Services/PageCommandeService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from 'react';
+import GlobalContext from '../context.js/context';
+
 
 
 
 
 const PanierPage = (prod) => {
     const [panier, setPanier] = useState(JSON.parse(localStorage.getItem("cart")));
+    // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false); //État de connexion utilisateur
+   
+    const storedUser = JSON.parse(localStorage.getItem("user"))
+    console.log(storedUser)
+
+    const {isConnected} = useContext(GlobalContext)
+  
+
+// Fonction pour vérifier si l'utilisateur est connecté
+
+// const checkUserLogin = () => {
+    // Vérifiez votre système d'authentification pour voir si l'utilisateur est connecté
+    // Par exemple, vous pourriez vérifier l'existence d'un jeton d'authentification dans le localStorage
+    const token = localStorage.getItem('token');
+    // return !!token; // Renvoie true si un jeton existe, sinon false
+// };
+
     useEffect(() => {
  // Récupérer les données du panier depuis le localStorage
         // const cartData = localStorage.getItem('cart');
@@ -31,13 +54,17 @@ const PanierPage = (prod) => {
     
             // Mettre à jour l'état du panier avec les données récupérées
             setPanier(updatedCart);
+
         }
+        // const userLoggedIn = checkUserLogin() /* Votre logique de connexion ici */
+        // setIsUserLoggedIn(userLoggedIn);
     
 }, []);
  
 
     
     const augmenterQuantite = (id) => {
+        if (isConnected) {
         const nouveauPanier = panier.map(prod => {
             if (prod.PR_ID === id) {
                 return {
@@ -53,7 +80,13 @@ const PanierPage = (prod) => {
         setPanier(nouveauPanier);
         localStorage.setItem('cart', JSON.stringify(nouveauPanier));
        
-    };
+    } else { // Afficher un message ou effectuer une redirection vers la page de connexion
+        alert("Veuillez vous connecter pour ajouter des articles au panier.");
+        // Vous pouvez également rediriger l'utilisateur vers la page de connexion
+        // en utilisant react-router-dom history.push ou Link
+        // Exemple : history.push('/connexion') ou <Link to="/connexion">Connexion</Link>};
+    }
+};
     
        // Fonction pour supprimer un produit du panier
        const supprimerDuPanier = (id) => {
@@ -67,6 +100,37 @@ const PanierPage = (prod) => {
     const totalPanier = panier.reduce((total, prod) => total + (prod.PR_Prix * prod.quantite), 0);
     console.log(prod);   
   
+    // Fonction pour enregistrer le panier en base de données
+
+    // const handleAchat = (produitId) => {
+    //     if (isConnected) {
+    //         // Effectuer l'achat en utilisant la fonction addCommande du service CommandeService
+    //         const newCommande = {
+    //             UT_ID: storedUser.UT_ID,
+    //             PR_ID: produitId,
+    //             CMD_DateAchat: new Date(),
+                
+    //         };
+
+    //         PageCommandeService.addCommande(newCommande)
+    //             .then(response => {
+    //                 console.log(response);
+    //                 // Traitement réussi
+    //                 // console.log(Achat du produit ${produitId} effectué avec succès.);
+    //                 // Ajoutez ici toute autre logique nécessaire après l'achat
+    //             })
+    //             .catch(error => {
+    //                 // Gestion des erreurs
+    //                 console.error(error);
+    //                 // Ajoutez ici toute autre logique nécessaire en cas d'échec de l'achat
+    //             });
+    //     } else {
+    //         // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté
+    //         // console.log('L'utilisateur n'est pas connecté. Redirection vers la page de connexion.');
+    //         // Ajoutez ici la logique pour rediriger l'utilisateur vers la page de connexion si nécessaire
+    //     }
+    // };
+
     
     return (
         <div className='monpanier'>
@@ -95,7 +159,7 @@ const PanierPage = (prod) => {
               <Link to="/Creations">
                 <button className='continuer'>Continuer mes achats</button>
                 </Link>
-            <button className='caisse'>Paiement</button>
+        
         </div>
     );
 };

@@ -5,29 +5,37 @@ import PageAccueil from './Pages/PageAccueil';
 import PageInscription from "./Pages/PageInscription";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import GlobalContext from './context.js/context';
-import React, { useState, useContext } from 'react';
+import GlobalContext from './context.js/context.js'
+import React, { useState, useEffect } from 'react';
 import PageCreation from './Pages/PageCreation';
 import PageAdmin from './Pages/PageAdmin';
 import PageContact from './Pages/PageContact';
-import PageListeEnvie from './Pages/PageListeEnvie';
 import PageVideo from './Pages/PageVideo';
-import PageConnAdmin from './Pages/PageConnAdmin';
+import PageConnexion from './Pages/PageConnexion';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
-import PagePanier from './Pages/PagePanier'
+import PagePanier from './Pages/PagePanier';
+import PageModifAdmin from './Pages/PageModifAdmin.jsx';
 
 
 
   function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(window.localStorage.getItem('user'));
   const [isConnected, setIsConnected] = useState(false)
-  const [accessToken, setAccessToken] = useState(null)
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('Token');
+    if (storedToken) {
+      setIsConnected(true);
+    }
+  }, []);
+
     return <>
     
-    
-      <BrowserRouter><Header/>
-      <GlobalContext.Provider value={{ user, setUser, isConnected, setIsConnected, accessToken, setAccessToken }}>
+    <GlobalContext.Provider value={{ isConnected, setIsConnected, user, setUser }}>
+      <BrowserRouter>
+      <Header/>
+     
         <Routes>
           
         
@@ -36,22 +44,24 @@ import PagePanier from './Pages/PagePanier'
           <Route path={"/PageAccueil"} element={<PageAccueil/>}/> 
           <Route path={"/connexion"} element={<PageInscription/>}/>
           <Route path={"/Creations"} element={<PageCreation/>}/>
-          <Route path={"/PageAdmin"} element={<PageAdmin/>}/>
-          <Route path={"/ConnAdmin"} element={<PageConnAdmin/>}/>
+          <Route path={"/PageAdmin"} element={isConnected ? <PageAdmin /> : <PageConnexion />} />
+          <Route path={"/PageConnexion"} element={<PageConnexion/>}/>
           <Route path={"/PageContact"} element={<PageContact/>}/>
-          <Route path={"/PageListeEnvie"} element={<PageListeEnvie/>}/>
           <Route path={"/PageVideo"} element={<PageVideo/>} />
           <Route path={"/PagePanier"} element={<PagePanier/>} />
+          <Route path={"/modifAdmin/:PR_ID"} element={<PageModifAdmin/>} />
+          
         
         
           
           
           </Routes>
+          </BrowserRouter>
           </GlobalContext.Provider> 
-      </BrowserRouter>
+      
       <ToastContainer
         position="bottom-right"
-        autoClose={5000}
+        autoClose={1800}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -61,6 +71,7 @@ import PagePanier from './Pages/PagePanier'
         pauseOnHover
         theme="colored"
       />
+      
       <Footer/>
       
     </>;

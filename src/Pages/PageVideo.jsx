@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'; // Importation du fichier CSS
 const PageVideo = () => {
     return (
         <div className="page-container">
-            <h1>Comment porter le foulard et le headband ?</h1>
+            <h1> Nos créations s'adaptent à toutes les morphologies. Pour vous aider à ajuster nos produits, voici quelques vidéos explicatives : comment porter le foulard et le headband ?</h1>
             <div className="video-container">
                 <div className="video-wrapper">
                     <video controls width="500px" height="400px">

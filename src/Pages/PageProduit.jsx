@@ -1,9 +1,12 @@
 import React from 'react';
 import ProduitService from '../Services/ProduitService';
 import ProduitComp from '../Components/ProduitComp';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../Styles/StyleProduit.css';
+import context from '../context.js/context';
+import PageCommandeService from '../Services/PageCommandeService';
+import { toast } from 'react-toastify';
 
 
 
@@ -12,6 +15,9 @@ const PageProduit = () => {
     const [produit, setProduit] = useState([]);
     
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')))
+    const { isConnected } = useContext(context); // Récupérez l'état de connexion de l'utilisateur depuis le contexte
+
+     const storedUser = JSON.parse(localStorage.getItem("user"))
 
     const GetProduitById = async () => {
         try {
@@ -23,20 +29,50 @@ const PageProduit = () => {
             console.log(e)
         }
     }
-    
+
     const addToCart = (newItem) => {
-        // const updatedCart = [...cart, prod];
-        // setCart(updatedCart);
-       var newCart = cart;
-
-        newCart.push(newItem)
-
-        setCart(newCart)
-       
-
-        // // Stocker les données du panier dans localStorage
-        localStorage.setItem('cart', JSON.stringify(newCart));
+        if (isConnected) { // Vérifiez si l'utilisateur est connecté
+            var newCart = cart ? [...cart] : []; // Créez une copie du panier existant ou initialisez un nouveau panier
+            newCart.push(newItem);
+            setCart(newCart);
+            localStorage.setItem('cart', JSON.stringify(newCart)); // Stockez les données du panier dans localStorage
+        } else {            
+            <Link to={"/PageConnexion"}> </Link>
+            toast.error('Veuillez vous connecter pour effectuer un achat');
+            // Vous pouvez également rediriger l'utilisateur vers la page de connexion ici
+        } 
     }
+
+    const handleAchat = (produitId) => {
+        console.log(produitId.PR_ID)
+        if (isConnected) {
+            // Effectuer l'achat en utilisant la fonction addCommande du service CommandeService
+            const newCommande = {
+                UT_ID: storedUser.UT_ID,
+                PR_ID: produitId.PR_ID,
+                             
+                               
+            };
+
+            PageCommandeService.addCommande(newCommande)
+                .then(response => {
+                    console.log(response);
+                    toast.success('Votre article a bien été commandé'); 
+                    
+                    // Traitement réussi
+                    // console.log(Achat du produit ${produitId} effectué avec succès.);
+                    // Ajoutez ici toute autre logique nécessaire après l'achat
+                })
+                .catch(error => {
+                    // Gestion des erreurs
+                    console.error(error);
+                    // Ajoutez ici toute autre logique nécessaire en cas d'échec de l'achat
+                });
+        } else {
+            toast.error('Veuillez vous connecter pour effectuer un achat')
+        }
+    };
+
 
     
 useEffect(() => {
@@ -98,10 +134,13 @@ useEffect(() => {
                 <p>{prod.PR_Description}</p>
                 <p>{prod.PR_Prix}€</p>
             </div>
+            
            
             <Link to="/PagePanier">
             <button className='boutonpanier' onClick={() => addToCart(prod)}>Ajouter au panier</button>
+            
             </Link>
+<button className='boutonpanier' onClick={() => handleAchat(prod)}>Achat immédiat</button>
 
           {/* <div className='link'> <Link to="/PageContact"> Acheter </Link></div>   */}
         </div>
