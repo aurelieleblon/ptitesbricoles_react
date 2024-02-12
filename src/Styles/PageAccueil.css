@@ -21,8 +21,8 @@
 }
 
 .container-sliderimage img {
-  height: 100%;
-  max-width: 80%; /* Ajustez la largeur de l'image pour maintenir les proportions */
+  height: 80%;
+  width: 60%;
  /* Ajustez la largeur maximale de chaque image selon vos préférences */
   border-radius: 20%;
   margin: 0 10px;
@@ -49,10 +49,12 @@
  /*Ajoutez une marge en haut du paragraphe pour le descendre davantage */
 }
 
+
 @media screen and (max-width: 768px) {
   .container-sliderimage img {
     height: auto;
     max-width: 70%;
+    z-index: 0;
   }
   .slider {
     width: 70%;
@@ -61,14 +63,14 @@
 
   .content {
     position: relative;
-    top: 10; /* Réinitialisez la position verticale */
-    transform: translate(-50%, 0); /* Réinitialisez la translation */
-    padding: 20px;
+   z-index: 1;
+    /* Réinitialisez la translation */
+    padding: 10px;
   }
 
   .content p {
     font-size: 12px;
-    margin-top: 20px; /* Ajustez la marge en haut du paragraphe pour éviter qu'il ne passe au-dessus des images */
+    margin-top: 10px; /* Ajustez la marge en haut du paragraphe pour éviter qu'il ne passe au-dessus des images */
   }
 
   img {
@@ -77,3 +79,38 @@
     border-radius: 20%;
   }
 }
+body {
+  background: linear-gradient(to bottom, #e7d1c0, #EFEBEB) no-repeat;
+  background-size: cover; /* Pour couvrir tout l'arrière-plan */
+  height: 100vh; /* Hauteur de la fenêtre visible */
+  margin: 0; /* Supprimer les marges par défaut */
+  padding: 0; /* Supprimer les rembourrages par défaut */
+}
+
+@media screen and (orientation: landscape) {
+  .slider {
+    width: 90%; /* Ajustez la largeur du slider selon vos besoins en mode paysage */
+    margin-top: 100px; /* Réduisez la marge supérieure en mode paysage */
+  }
+
+  .container-sliderimage img {
+    max-width: 100%; /* Ajustez la largeur maximale des images pour qu'elles s'adaptent à la largeur de l'écran en mode paysage */
+  }
+
+  .content {
+    top: 50%; /* Ajustez la position verticale du contenu en mode paysage */
+    padding: 10px; /* Réduisez le padding du contenu en mode paysage */
+  }
+
+  .content p {
+    margin-top: 10px;
+    position: absolute; /* Réduisez la marge supérieure du paragraphe en mode paysage */
+  }
+}
+.slick-arrow.slick-prev, .slick-arrow.slick-next {
+  margin-top: -30px
+
+}
+
+
+

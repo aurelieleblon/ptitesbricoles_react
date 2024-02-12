@@ -3,6 +3,7 @@
     /* Autres styles pour votre en-tête */
   }
 
+
 .global-inscri {
    
     flex-direction: column;
@@ -15,7 +16,8 @@
   .page-inscri {
     display: flex;
     justify-content: center;
-     /* Ajustez la marge selon vos besoins */
+    background: linear-gradient(to bottom, #e7d1c0, #EFEBEB) no-repeat;
+   
   }
   
   .container-inscri {
@@ -45,6 +47,8 @@
   /* Ajoutez ces styles pour aligner les titres au centre de chaque section */
   .wrapper-inscri h2 {
     text-align: center;
+    margin-bottom: 10px;
+    margin-top: 30px ;
   }
   
   /* Ajoutez ces styles pour rendre les formulaires plus attrayants (ajustez selon vos besoins) */
@@ -56,6 +60,8 @@
     display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
     
   }
 /* Ajoutez ces styles pour personnaliser les input */

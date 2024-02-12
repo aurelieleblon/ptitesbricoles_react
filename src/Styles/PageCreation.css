@@ -1,6 +1,6 @@
-body {
+/* body {
     height: 100%;
-}
+} */
 
 .imagesrang1 {
     display: flex;
@@ -9,7 +9,7 @@ body {
     
     justify-content: center;  /* Centrer horizontalement */
     gap: 10%;
-    margin-top: 5%
+    margin-top: 3%
 }
 
 .image-row {

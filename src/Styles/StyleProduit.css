@@ -111,6 +111,24 @@
 .boutonpanier:hover {
     background-color: #c6b09f;
 }
+
+@media screen and (max-width: 768px) {
+    .produit-card {
+        width: 80%; /* Réduisez la largeur des cartes pour qu'elles s'adaptent mieux aux écrans plus petits */
+        margin: 10px auto; /* Centrer les cartes horizontalement */
+    }
+
+    .description {
+        font-size: 10px;
+               
+      }
+
+.boutonpanier {
+    height: 3vh;
+    margin: 10px;
+}
+}
+
       
 
       

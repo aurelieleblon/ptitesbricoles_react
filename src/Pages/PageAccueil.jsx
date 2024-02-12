@@ -25,15 +25,15 @@ const ImageSlider = () => {
     <div className='slider'>
       <Slider {...settings}>
         <div className='container-sliderimage'>
-        <img src={process.env.PUBLIC_URL + `/Assets/images/foulard/foul12.jpg`} alt="Image 1" /></div>
+        <img src={process.env.PUBLIC_URL + `/Assets/images/foulard/foul12.jpg`} alt="Image foulard" /></div>
         <div className='container-sliderimage'>
-        <img src={process.env.PUBLIC_URL + `/Assets/images/noeudelas/noeud_el16.jpg`}  alt="Image 2" /></div>
+        <img src={process.env.PUBLIC_URL + `/Assets/images/noeudelas/noeud_el16.jpg`}  alt="Image noeud sur élastique" /></div>
         <div className='container-sliderimage'>
-        <img src={process.env.PUBLIC_URL + `/Assets/images/headband/headband_img1.jpg`}  alt="Image 3" /></div>
+        <img src={process.env.PUBLIC_URL + `/Assets/images/headband/headband_img1.jpg`}  alt="Image headband" /></div>
         <div className='container-sliderimage'>
-        <img src={process.env.PUBLIC_URL + `/Assets/images/portecarte/pc_cuivre_4.jpg`}  alt="Image 3" /></div>
+        <img src={process.env.PUBLIC_URL + `/Assets/images/portecarte/pc_cuivre_4.jpg`}  alt="Image porte carte" /></div>
         <div className='container-sliderimage'>
-        <img src={process.env.PUBLIC_URL + `/Assets/images/lingdem/ling_dem14.jpg`}  alt="Image 3" /></div>
+        <img src={process.env.PUBLIC_URL + `/Assets/images/lingdem/ling_dem14.jpg`}  alt="Image lingette démaquillante" /></div>
        
       </Slider>
 
