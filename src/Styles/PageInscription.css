@@ -1,28 +1,12 @@
-.header2 {
-    position: relative;
-    /* Autres styles pour votre en-tête */
-  }
 
-
-.global-inscri {
-   
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 100vh;
-  }
-  
-  .page-inscri {
+ .page-inscri {
     display: flex;
     justify-content: center;
     background: linear-gradient(to bottom, #e7d1c0, #EFEBEB) no-repeat;
    
   }
   
-  .container-inscri {
-    display: flex;
-  }
+ 
   
   .wrapper-inscri {
    
@@ -54,7 +38,7 @@
   /* Ajoutez ces styles pour rendre les formulaires plus attrayants (ajustez selon vos besoins) */
   .wrapper-inscri form {    
     width: 40rem;
-    height: 43rem;
+    height: 45rem;
     border: #ccc;
     border-radius: 50px;
     display: flex;
@@ -87,6 +71,7 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    margin: 10px;
   }
 
   .btn:hover {

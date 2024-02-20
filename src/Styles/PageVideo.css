@@ -5,6 +5,12 @@
     justify-content: center;
     margin-top: 10px;
     min-height: 100vh;
+    background: linear-gradient(to bottom, #e7d1c0, #EFEBEB) no-repeat;
+    background-size: cover; /* Pour couvrir tout l'arrière-plan */
+    height: 100vh; /* Hauteur de la fenêtre visible */
+    margin: 0; /* Supprimer les marges par défaut */
+    padding: 0;
+    text-align: center;
 }
 .video-container {
     display: flex;
@@ -13,13 +19,14 @@
     
 }
 h1 {
+
     font-size: 20px;
-    padding: 2px;
-    margin-bottom: 10px; /* Ajouter une marge inférieure pour séparer le titre des vidéos */
+   
 }
 
 .video-wrapper {
     margin: 50px;
+    margin-bottom: 100px;
 }
 
 /* video {

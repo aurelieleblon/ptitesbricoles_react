@@ -3,8 +3,13 @@
     justify-content: center;
     align-items: flex-start; /* Modifier align-items */
     min-height: 100vh; /* Utiliser min-height pour permettre le déplacement vers le haut */
-    padding-top: 150px; /* Ajouter un espace supplémentaire en haut */
+    padding-top: 50px;
+    background: linear-gradient(to bottom, #e7d1c0, #EFEBEB) no-repeat;
+    background-size: cover; /* Pour couvrir tout l'arrière-plan */
+    height: 100vh; /* Hauteur de la fenêtre visible */
+    
   }
+ 
 
 .container-connexion {
   background-color: #f0f0f0;
@@ -45,6 +50,8 @@ input {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    margin: 50px;
+    padding: 10px;
   
 }
 

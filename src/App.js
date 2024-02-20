@@ -17,8 +17,6 @@ import Header from './Components/Header';
 import PagePanier from './Pages/PagePanier';
 import PageModifAdmin from './Pages/PageModifAdmin.jsx';
 
-
-
   function App() {
   const [user, setUser] = useState(window.localStorage.getItem('user'));
   const [isConnected, setIsConnected] = useState(false)
@@ -36,8 +34,7 @@ import PageModifAdmin from './Pages/PageModifAdmin.jsx';
       <BrowserRouter>
       <Header/>
      
-        <Routes>
-          
+        <Routes>          
         
           <Route path={"/"} element={<PageAccueil/>} />
           <Route path={"/produit/:PR_ID"} element={<PageProduit />}/>
@@ -50,14 +47,11 @@ import PageModifAdmin from './Pages/PageModifAdmin.jsx';
           <Route path={"/PageVideo"} element={<PageVideo/>} />
           <Route path={"/PagePanier"} element={<PagePanier/>} />
           <Route path={"/modifAdmin/:PR_ID"} element={<PageModifAdmin/>} />
-          
-        
-        
-          
-          
-          </Routes>
-          </BrowserRouter>
-          </GlobalContext.Provider> 
+                      
+                    
+        </Routes>
+        </BrowserRouter>
+        </GlobalContext.Provider> 
       
       <ToastContainer
         position="bottom-right"

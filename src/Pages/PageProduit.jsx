@@ -59,15 +59,12 @@ const PageProduit = () => {
                     console.log(response);
                     toast.success('Votre article a bien été commandé'); 
                     
-                    // Traitement réussi
-                    // console.log(Achat du produit ${produitId} effectué avec succès.);
-                    // Ajoutez ici toute autre logique nécessaire après l'achat
+                  
                 })
                 .catch(error => {
                     // Gestion des erreurs
                     console.error(error);
-                    // Ajoutez ici toute autre logique nécessaire en cas d'échec de l'achat
-                });
+                                  });
         } else {
             toast.error('Veuillez vous connecter pour effectuer un achat')
         }

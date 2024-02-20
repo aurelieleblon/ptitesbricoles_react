@@ -4,14 +4,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import utilisateurService from '../Services/UtilisateurService';
 import '../Styles/PageInscription.css';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Inscription = () => {
 
     const navigate = useNavigate();
-
-   
-    //INSCRIPTION
-
+    
     const [utilisateur, setUtilisateur] = useState({
         nom: '',
         prenom: '',
@@ -21,7 +19,7 @@ const Inscription = () => {
         telephone: '',
         
     });
-
+    const [capVal, setCapVal] = useState(null)
 
     const isEmailValid = (email) => {
         // Expression régulière pour valider une adresse e-mail
@@ -52,16 +50,13 @@ const Inscription = () => {
             toast.success(`Bienvenue, ${utilisateur.prenom} ! Vous avez été inscrit(e).`);
             navigate("/PageAccueil");
             // Rediriger vers la page accueil après l'enregistrement réussi
-            // navigate
-        } catch (error) {
+            } catch (error) {
             console.error('Erreur lors de l\'ajout de l\'utilisateur :', error);
             toast.error('Erreur lors de la création de l\'utilisateur');
         }
     };
 
-
-    return (
-                   
+    return (                  
 
             <div className={`page-inscri`}>
                 <div className='container-inscri'>
@@ -138,8 +133,11 @@ const Inscription = () => {
                                  required 
                                 />
                             </div>
-
-                            <button type="button" className="btn" onClick={handleAdd} >
+                        <ReCAPTCHA
+                        sitekey='6Ld5CXgpAAAAAMKnNCHL_qMj7vHiYp8mOoP-kzWv'
+                        onChange={(val) => setCapVal(val)}
+                        />
+                            <button disabled={!capVal} type="button" className="btn" onClick={handleAdd} >
                                 S'inscrire
                             </button>
                         </form>

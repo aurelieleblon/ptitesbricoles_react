@@ -64,23 +64,23 @@
 
 @media screen and (max-width: 768px) {
     .imagesrang1 {
-      flex-direction: column; /* Changez la direction en colonne pour que les images soient disposées en ligne */
-      align-items: center; /* Centrez les images horizontalement */
-      margin-top: 3%; /* Réduisez la marge supérieure */
+      flex-direction: column; 
+      align-items: center; 
+      margin-top: 3%; 
     }
   
     .image-row {
       margin-left: 0;
-      flex-direction: column; /* Réinitialisez la marge gauche */
+      flex-direction: column; 
     }
   
     .image-container img {
-      width: 20vw; /* Réduisez la largeur des images */
-      height: auto; /* Ajustez automatiquement la hauteur en fonction de la largeur */
+      width: 20vw; 
+      height: auto;
     }
   
     .text-overlay {
-      font-size: 10px; /* Réduisez la taille du texte */
+      font-size: 10px;
     }
   }
   

@@ -7,13 +7,10 @@ import "../Styles/PageAdminModif.css"
 
 
 function ModifAdmin() {
-  const [nomProduit, setProduitNom] = useState('');
-  const [description, setDescription] = useState('');
-  const [prix, setPrix] = useState('');
+
   const { PR_ID } = useParams();
  
-  
-  
+    
   const GetProduitByIdBis = async () => {
     try {
         const response = await ProduitService.GetProduitByIdBis(PR_ID);
@@ -23,15 +20,8 @@ function ModifAdmin() {
     } catch (e) {
         console.log(e)
     }
-}
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Envoyer les données du formulaire au serveur ou effectuer d'autres actions
-    console.log('Nom du produit:', nomProduit);
-    console.log('Description:', description);
-    console.log('Prix:', prix);
-  };
-
+} // récupère les produits par PR_ID
+  
 
   const [produit, setProduit] = useState({
     nomProduit: '',
@@ -40,13 +30,11 @@ function ModifAdmin() {
     
 });
 
-
 const handleChange = (event) => {
     const { name, value } = event.currentTarget;
     setProduit({ ...produit, [name]: value });
     console.log(produit)
 };
-
 
 
 const handleUpdate = async (e) => {
@@ -62,7 +50,6 @@ const handleUpdate = async (e) => {
   }
  
 
-
 useEffect(() => {
     GetProduitByIdBis()
 }, []);
@@ -70,18 +57,17 @@ useEffect(() => {
 
   return (
     <>
-    
-   
+      
 
     <form onSubmit={handleUpdate}>
       <div>
         <input type='hidden' name="PR_ID" value={produit.PR_ID}> 
         {/* permet de récupérer et d'envoyer l'id en étant caché */}
         </input>
-        <label htmlFor="productName">Nom du produit:</label>
+        <label htmlFor="nomProduit">Nom du produit:</label>
         <input
           type="text"
-          id="productName"
+          id="nomProduit"
           name='PR_Nom'
           value={produit.PR_Nom}
           onChange={handleChange}
@@ -102,14 +88,14 @@ useEffect(() => {
         <label htmlFor="price">Prix:</label>
         <input
           type="number"
-          id="price"
+          id="prix"
           name='PR_Prix'
           value={produit.PR_Prix}
           onChange={handleChange}
           required
         />
       </div>
-      <button type="submit">Ajouter</button>
+      <button type="submit">Modifier</button>
     </form>
     </>
  

@@ -1,14 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import Auth from '../Services/Auth';
 import UtilisateurService from '../Services/UtilisateurService';
-import context from '../context.js/context';
 import { useNavigate } from 'react-router-dom';
 import "../Styles/PageConnexion.css"
 import GlobalContext from '../context.js/context';
-
-
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Connexion = () => {
     const{isConnected, setIsConnected, user, setUser} = useContext(GlobalContext);
@@ -16,6 +13,7 @@ const Connexion = () => {
     const [utilisateur, setUtilisateur] = useState({email: '', password: '' });
 
     const navigate = useNavigate()
+    const [capVal, setCapVal] = useState(null)
 
     const handleConn = (event) => {
         const { name, value } = event.currentTarget;
@@ -52,7 +50,11 @@ const Connexion = () => {
                         
                         <input name='email' value={utilisateur.email} type="email" placeholder="Votre adresse mail" required onChange={handleConn} />
                         <input name='password' value={utilisateur.password} type="password" placeholder="Mot de passe" required onChange={handleConn} />
-                        <button type="submit" className="btnadmin">Se connecter</button>
+                        <ReCAPTCHA
+                        sitekey='6Ld5CXgpAAAAAMKnNCHL_qMj7vHiYp8mOoP-kzWv'
+                        onChange={(val) => setCapVal(val)}
+                        />
+                        <button disabled={!capVal} type="submit" className="btnadmin">Se connecter</button>
                     </form>
                 </div>
             </div>

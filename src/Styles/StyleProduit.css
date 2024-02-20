@@ -106,6 +106,8 @@
 
 .boutonpanier {
     background-color: #d9c2b1;
+    border-radius: 10px;
+    border-color: #d9c2b1;
 }
 
 .boutonpanier:hover {
